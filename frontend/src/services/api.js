@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Assume the backend is running on port 5000 from the backend index.js
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://fitness-management.onrender.com/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,

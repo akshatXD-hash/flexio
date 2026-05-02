@@ -1,58 +1,49 @@
-import { Activity, Globe, MessageCircle, Mail } from "lucide-react";
+import { Globe, MessageCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-800 text-white pt-20 pb-10 border-t-4 border-emerald-primary">
+    <footer className="bg-card text-foreground pt-20 pb-10 border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="bg-emerald-primary p-1.5 rounded-sm">
-                <Activity className="h-6 w-6 text-white" strokeWidth={3} />
-              </div>
-              <span className="text-2xl font-black tracking-tighter uppercase whitespace-nowrap">Fitness<span className="text-emerald-primary">Core</span></span>
+            <Link to="/" className="flex items-baseline gap-2 mb-4">
+              <span className="font-serif text-3xl font-medium tracking-tight text-primary">Flexio.</span>
             </Link>
-            <p className="text-gray-400 max-w-sm font-medium leading-relaxed">
-              We leverage cutting-edge AI to provide personalized workout schedules, sleep metrics, and body insights for optimal peak performance.
+            <p className="text-muted-foreground max-w-sm font-medium leading-relaxed">
+              A quiet companion for your body. Plan your week, follow guided sessions, and notice how you feel.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-emerald-primary transition-colors"><MessageCircle className="h-5 w-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-emerald-primary transition-colors"><Globe className="h-5 w-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-emerald-primary transition-colors"><Mail className="h-5 w-5" /></a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><MessageCircle className="h-5 w-5" /></a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Globe className="h-5 w-5" /></a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="h-5 w-5" /></a>
             </div>
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-6 text-white tracking-widest uppercase text-sm">Platform</h4>
+            <h4 className="text-sm font-bold mb-6 text-foreground tracking-widest uppercase">Platform</h4>
             <ul className="space-y-4">
-              <li><Link to="/bmi" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">BMI Calculator</Link></li>
-              <li><Link to="/workout" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">AI Workouts</Link></li>
-              <li><Link to="/sleep" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">Sleep Tracker</Link></li>
-              <li><Link to="/dashboard" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">Dashboard</Link></li>
+              <li><Link to="/bmi" className="text-muted-foreground hover:text-primary transition-colors font-medium">Body Context</Link></li>
+              <li><Link to="/workout" className="text-muted-foreground hover:text-primary transition-colors font-medium">Guided Sessions</Link></li>
+              <li><Link to="/sleep" className="text-muted-foreground hover:text-primary transition-colors font-medium">Restful Recovery</Link></li>
+              <li><Link to="/dashboard" className="text-muted-foreground hover:text-primary transition-colors font-medium">Dashboard</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-6 text-white tracking-widest uppercase text-sm">Company</h4>
+            <h4 className="text-sm font-bold mb-6 text-foreground tracking-widest uppercase">Company</h4>
             <ul className="space-y-4">
-              <li><Link to="/about" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">About</Link></li>
-              <li><Link to="/privacy" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="text-gray-400 hover:text-emerald-primary transition-colors font-medium">Terms of Service</Link></li>
+              <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors font-medium">About</Link></li>
+              <li><Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors font-medium">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors font-medium">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-500 font-medium text-sm">
-            © {new Date().getFullYear()} Flexio AI. All rights reserved.
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-muted-foreground font-medium text-sm">
+            © {new Date().getFullYear()} Flexio Wellness. All rights reserved.
           </p>
-          <div className="bg-slate-800 px-4 py-2 rounded-sm select-none">
-            <span className="text-emerald-primary font-bold text-xs tracking-widest uppercase flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-primary animate-pulse"></span>
-              Systems Operational
-            </span>
-          </div>
         </div>
       </div>
     </footer>

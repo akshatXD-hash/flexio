@@ -5,9 +5,61 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Surfaces */
+    --background: oklch(0.96 0.018 75);   /* warm paper */
+    --foreground: oklch(0.22 0.02 50);    /* ink */
+    --card: oklch(0.985 0.012 80);
+    --card-foreground: oklch(0.22 0.02 50);
+    --popover: oklch(0.985 0.012 80);
+    --popover-foreground: oklch(0.22 0.02 50);
+
+    /* Brand */
+    --primary: oklch(0.58 0.13 40);       /* terracotta */
+    --primary-foreground: oklch(0.97 0.015 80);
+
+    /* Neutrals */
+    --secondary: oklch(0.92 0.028 75);
+    --secondary-foreground: oklch(0.28 0.03 50);
+    --muted: oklch(0.93 0.02 75);
+    --muted-foreground: oklch(0.48 0.025 60);
+
+    /* Accent (olive) */
+    --accent: oklch(0.7 0.09 130);
+    --accent-foreground: oklch(0.22 0.04 130);
+
+    /* Status */
+    --destructive: oklch(0.6 0.18 25);
+    --destructive-foreground: oklch(0.97 0.015 80);
+
+    /* Lines + focus */
+    --border: oklch(0.86 0.025 70);
+    --input: oklch(0.86 0.025 70);
+    --ring: oklch(0.58 0.13 40);
+
+    /* Custom palette */
+    --cream:     oklch(0.96 0.02 80);
+    --sage:      oklch(0.7 0.09 130);     /* soft olive */
+    --sage-deep: oklch(0.4 0.06 135);     /* deep olive */
+    --clay:      oklch(0.62 0.13 45);     /* warm clay */
+    --ink:       oklch(0.22 0.02 50);
+
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, oklch(0.94 0.03 75) 0%, oklch(0.88 0.06 55) 100%);
+    --gradient-sage: linear-gradient(160deg, oklch(0.88 0.05 130) 0%, oklch(0.82 0.06 100) 100%);
+
+    /* Shadows */
+    --shadow-soft:  0 18px 50px -22px oklch(0.4 0.06 60 / 0.25);
+    --shadow-glow:  0 30px 80px -30px oklch(0.58 0.13 40 / 0.35);
+    --shadow-paper: 0 1px 0 oklch(0.86 0.025 70), 0 12px 30px -18px oklch(0.3 0.04 60 / 0.25);
+  }
+
   body {
-    /* Set body text to slate-200 and background to dark-slate */
-    @apply bg-dark-slate text-slate-200 font-sans antialiased overflow-x-hidden;
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply font-sans antialiased overflow-x-hidden;
   }
 }
 
@@ -19,23 +71,23 @@
   }
 
   .input-minimal {
-    @apply w-full bg-slate-900/80 border border-slate-600 rounded-none md:rounded-sm px-4 py-3 text-white focus:outline-none focus:border-lime-accent focus:ring-1 focus:ring-lime-accent transition-colors shadow-inner;
+    @apply w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors shadow-sm;
   }
 
   .btn-primary {
-    @apply bg-lime-accent text-dark-slate font-bold px-6 py-3 rounded-none md:rounded-sm border border-transparent shadow-[4px_4px_0_0_rgba(255,255,255,0.1)] transition-all hover:bg-[#b0f215] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none inline-flex items-center justify-center;
+    @apply bg-foreground text-background font-bold px-6 py-3 rounded-sm border border-transparent transition-all hover:bg-primary active:translate-y-[2px] inline-flex items-center justify-center;
   }
 
   .btn-outline {
-    @apply bg-transparent text-lime-accent font-bold px-6 py-3 rounded-none md:rounded-sm border-2 border-lime-accent transition-all hover:bg-lime-accent hover:text-dark-slate shadow-[4px_4px_0_0_rgba(198,255,50,0.2)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none inline-flex items-center justify-center;
+    @apply bg-transparent text-foreground font-bold px-6 py-3 rounded-sm border border-border transition-all hover:border-foreground hover:bg-muted active:translate-y-[2px] inline-flex items-center justify-center;
   }
 }
 
-/* Custom background pattern for Dark Mode */
+/* Custom background pattern */
 .bg-grid-pattern {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(to right, oklch(0.22 0.02 50 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.22 0.02 50 / 0.05) 1px, transparent 1px);
 }
 
 @keyframes marquee {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
-import { Dumbbell, Moon, Calculator, ArrowRight, User, Crosshair, Globe2, ShieldCheck, Gamepad2 } from "lucide-react";
+import { Dumbbell, Moon, Calculator, ArrowRight, User, Heart, Sparkles, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { getBMIHistory, getWorkoutHistory, getSleepHistory } from "../services/api";
 
@@ -33,207 +33,200 @@ export const Dashboard = () => {
 
   const calculateVitalityScore = () => {
     let score = 0;
-    
-    // BMI Scoring (Normal = +30)
     if (synergyData.bmi) {
       const val = parseFloat(synergyData.bmi.bmiValue);
-      if (val >= 18.5 && val <= 24.9) score += 30; 
-      else score += 15; 
+      if (val >= 18.5 && val <= 24.9) score += 30; else score += 15; 
     }
-    
-    // Workout Scoring (Lots of Consistency = +35)
     if (synergyData.workout) {
       const days = parseInt(synergyData.workout.daysPerWeek) || 0;
-      if (days >= 5) score += 35;
-      else if (days >= 3) score += 25;
-      else if (days >= 1) score += 10;
+      if (days >= 5) score += 35; else if (days >= 3) score += 25; else if (days >= 1) score += 10;
     }
-    
-    // Sleep Scoring (crucial for recovery = +35)
     if (synergyData.sleep) {
       const hrs = parseFloat(synergyData.sleep.amount) || 0;
-      if (hrs >= 7) score += 35;
-      else if (hrs >= 5) score += 20;
-      else score += 5;
+      if (hrs >= 7) score += 35; else if (hrs >= 5) score += 20; else score += 5;
     }
-    
     return score;
   };
 
   const score = calculateVitalityScore();
-  const playerLevel = Math.max(1, Math.floor(score / 10)); // Max Level 10
   
-  // Fake "Global Rank" mathematical mapping just to simulate the game feel
-  let globalRankPct = 99; // If 0 score, you are bottom 1%
-  if (score > 10) globalRankPct = Math.max(1, 100 - score + Math.floor(Math.random() * 5)); // e.g. Score 90 = Top ~10%
-
   const getRankData = (val) => {
-    if (val >= 85) return { tier: "S-Tier", title: "Apex Predator", color: "text-emerald-400", bg: "bg-emerald-400", border: "border-emerald-400/30" };
-    if (val >= 60) return { tier: "A-Tier", title: "Elite Athlete", color: "text-emerald-primary", bg: "bg-emerald-primary", border: "border-emerald-primary/30" };
-    if (val >= 30) return { tier: "B-Tier", title: "Active Contender", color: "text-yellow-400", bg: "bg-yellow-400", border: "border-yellow-400/30" };
-    return { tier: "C-Tier", title: "Rookie", color: "text-gray-400", bg: "bg-slate-400", border: "border-slate-700" };
+    if (val >= 85) return { tier: "Flourishing", title: "In Perfect Balance", color: "text-primary" };
+    if (val >= 60) return { tier: "Consistent", title: "Steady Rhythm", color: "text-accent" };
+    if (val >= 30) return { tier: "Awakening", title: "Finding Your Pace", color: "text-muted-foreground" };
+    return { tier: "Beginning", title: "Taking Root", color: "text-muted-foreground" };
   };
   const rank = getRankData(score);
 
-  // UI Animation configs
   const containerVars = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
   const itemVars = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVars} className="space-y-12">
-      <div className="bg-slate-800 text-white p-8 md:p-12 rounded-sm relative overflow-hidden shadow-xl border-l-[6px] border-emerald-primary">
-        <div className="absolute right-0 top-0 w-64 h-64 bg-emerald-primary rounded-full blur-[120px] opacity-10 transform translate-x-1/2 -translate-y-1/4 pointer-events-none"></div>
-        <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start gap-8">
+    <motion.div initial="hidden" animate="visible" variants={containerVars} className="space-y-12 max-w-7xl mx-auto font-sans text-foreground pb-20">
+      {/* State Guide Legend */}
+      <motion.div variants={itemVars} className="bg-card border border-border rounded-sm p-6 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 shadow-sm mt-8">
+        <div className="flex items-center gap-3 xl:w-1/4">
+           <div className="bg-muted p-2 rounded-sm">
+             <Heart className="w-5 h-5 text-muted-foreground" />
+           </div>
+           <div>
+             <h3 className="text-xs font-bold text-foreground uppercase tracking-widest mb-1">State Guide</h3>
+             <p className="text-xs text-muted-foreground font-medium">Understanding your wellness flow</p>
+           </div>
+        </div>
+        <div className="flex w-full xl:w-3/4 flex-col sm:flex-row gap-6 justify-between">
+           <div className="flex flex-col items-start border-l-2 border-muted pl-4 sm:w-1/4">
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1">Beginning</span>
+              <span className="text-sm font-serif font-medium text-muted-foreground mb-1">Taking Root</span>
+              <span className="text-xs text-muted-foreground/70 leading-relaxed">Starting your gentle journey. Focus on just showing up.</span>
+           </div>
+           <div className="flex flex-col items-start border-l-2 border-muted pl-4 sm:w-1/4">
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1">Awakening</span>
+              <span className="text-sm font-serif font-medium text-muted-foreground mb-1">Finding Your Pace</span>
+              <span className="text-xs text-muted-foreground/70 leading-relaxed">Building a routine. Your body is gently adapting.</span>
+           </div>
+           <div className="flex flex-col items-start border-l-2 border-accent pl-4 sm:w-1/4">
+              <span className="text-[10px] uppercase tracking-widest text-accent font-bold mb-1">Consistent</span>
+              <span className="text-sm font-serif font-medium text-foreground mb-1">Steady Rhythm</span>
+              <span className="text-xs text-muted-foreground/80 leading-relaxed">Regular practice established. Feeling the benefits daily.</span>
+           </div>
+           <div className="flex flex-col items-start border-l-2 border-primary pl-4 sm:w-1/4">
+              <span className="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Flourishing</span>
+              <span className="text-sm font-serif font-medium text-foreground mb-1">In Perfect Balance</span>
+              <span className="text-xs text-muted-foreground/80 leading-relaxed">Deeply connected with and honoring your body's needs.</span>
+           </div>
+        </div>
+      </motion.div>
+
+      {/* Welcome & Summary Card */}
+      <div className="bg-card p-8 md:p-12 rounded-sm relative overflow-hidden shadow-sm border border-border">
+        <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start gap-12">
            
-           <div className="lg:pr-10">
-             <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-2">Welcome Back.</h1>
-             <p className="text-gray-400 font-medium text-lg mb-8">Ready to level up your biological hardware?</p>
+           <div className="lg:pr-10 lg:w-1/2">
+             <h1 className="text-4xl md:text-5xl font-serif font-black tracking-tight mb-4 text-foreground">Welcome Back.</h1>
+             <p className="text-muted-foreground font-medium text-lg mb-8 leading-relaxed">Ready to continue your gentle practice? Listen to your body and move at your own pace today.</p>
              
-             <div className="flex items-center gap-4 bg-slate-800/80 p-4 rounded-sm border border-slate-700 shadow-inner w-max backdrop-blur-sm">
-                <div className="bg-slate-800 p-3 rounded-full border border-slate-700/50">
-                  <User className="h-6 w-6 text-gray-400" />
+             <div className="flex items-center gap-4 bg-background p-4 rounded-sm border border-border w-max">
+                <div className="bg-muted p-3 rounded-full">
+                  <User className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold tracking-widest text-slate-500 uppercase">Profile Status</p>
-                  <p className="font-bold text-white uppercase flex items-center gap-2">
-                     <span className="w-2 h-2 rounded-full bg-emerald-primary animate-pulse"></span> Online
+                  <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Status</p>
+                  <p className="font-bold text-foreground uppercase flex items-center gap-2">
+                     <span className="w-2 h-2 rounded-full bg-primary"></span> Present
                   </p>
                 </div>
              </div>
            </div>
 
-           {/* Central GAMER Player Card Widget */}
+           {/* Wellness Summary */}
            {!loading && (
-             <div className={`flex-1 w-full lg:min-w-[400px] border ${rank.border} rounded-sm p-1 bg-slate-800/50 backdrop-blur-md relative overflow-hidden group shadow-2xl`}>
-                <div className="bg-slate-800 w-full h-full p-5 flex flex-col relative overflow-hidden">
-                   
-                   {/* Top Header */}
-                   <div className="flex justify-between items-center mb-6">
-                      <div className="flex items-center gap-2">
-                         <Gamepad2 className={`h-5 w-5 ${rank.color}`} />
-                         <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Player Card</span>
-                      </div>
-                      <div className="bg-slate-800 border border-slate-700 px-3 py-1 flex items-center gap-2 rounded shadow-inner">
-                         <Globe2 className="w-3 h-3 text-gray-400"/>
-                         <span className="text-[10px] font-black tracking-widest uppercase text-gray-400">Global Rank: Top {globalRankPct}%</span>
-                      </div>
+             <div className="flex-1 w-full lg:w-1/2 border border-border rounded-sm p-6 bg-background shadow-sm">
+                
+                <div className="flex justify-between items-center mb-8 border-b border-border pb-4">
+                   <div className="flex items-center gap-2">
+                      <Heart className={`h-5 w-5 ${rank.color}`} />
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Wellness Summary</span>
                    </div>
-
-                   {/* Title & Level */}
-                   <div className="mb-6 border-l-4 border-slate-700 pl-4 py-1">
-                      <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Class: {rank.tier}</div>
-                      <div className={`text-3xl font-black tracking-tighter uppercase ${rank.color}`}>
-                        {rank.title}
-                      </div>
+                   <div className="px-3 py-1 flex items-center gap-2 rounded bg-muted">
+                      <Sparkles className="w-3 h-3 text-muted-foreground"/>
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">Flow State</span>
                    </div>
-
-                   {/* Main XP System */}
-                   <div className="mb-6 bg-slate-800/50 p-3 rounded border border-slate-700 border-dashed">
-                      <div className="flex justify-between items-end mb-2">
-                         <span className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
-                            <Crosshair className="w-3 h-3 text-emerald-primary" /> Base XP
-                         </span>
-                         <span className="text-lg font-black text-white leading-none">Lvl {playerLevel}</span>
-                      </div>
-                      <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700 relative shadow-inner">
-                         <div 
-                           className={`h-full ${rank.bg} transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(255,255,255,0.2)]`} 
-                           style={{ width: `${score}%` }}
-                         ></div>
-                      </div>
-                      <div className="text-[9px] text-slate-500 font-black uppercase tracking-widest text-right mt-1">
-                         {score} / 100 Points to next Tier
-                      </div>
-                   </div>
-
-                   {/* Mission Checklist */}
-                   <div className="space-y-2">
-                      <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Daily Biological Missions</div>
-                      
-                      <Link to="/bmi" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.bmi ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
-                         <span className="text-xs font-bold flex items-center gap-2"><Calculator className="w-4 h-4"/> BMI Calibrated</span>
-                         {synergyData.bmi ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
-                      </Link>
-
-                      <Link to="/workout" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.workout ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
-                         <span className="text-xs font-bold flex items-center gap-2"><Dumbbell className="w-4 h-4"/> Workout Generated</span>
-                         {synergyData.workout ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
-                      </Link>
-
-                      <Link to="/sleep" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.sleep ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
-                         <span className="text-xs font-bold flex items-center gap-2"><Moon className="w-4 h-4"/> Recovery Logged</span>
-                         {synergyData.sleep ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
-                      </Link>
-                   </div>
-                   
                 </div>
+
+                <div className="mb-8">
+                   <div className="text-xs font-bold tracking-widest text-muted-foreground uppercase mb-1">State: {rank.tier}</div>
+                   <div className={`text-3xl font-serif font-medium tracking-tight ${rank.color}`}>
+                     {rank.title}
+                   </div>
+                </div>
+
+                <div className="space-y-3">
+                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Today's Gentle Practice</div>
+                   
+                   <Link to="/bmi" className={`flex justify-between items-center p-3 rounded-sm transition-colors ${synergyData.bmi ? 'bg-muted/50 border border-border text-foreground hover:bg-muted' : 'bg-background border border-border border-dashed text-muted-foreground hover:bg-muted/30'}`}>
+                      <span className="text-sm font-medium flex items-center gap-3"><Calculator className="w-4 h-4"/> Check In</span>
+                      {synergyData.bmi ? <CheckCircle2 className="w-4 h-4 text-primary" /> : <div className="text-[10px] uppercase font-bold tracking-widest">Pending</div>}
+                   </Link>
+
+                   <Link to="/workout" className={`flex justify-between items-center p-3 rounded-sm transition-colors ${synergyData.workout ? 'bg-muted/50 border border-border text-foreground hover:bg-muted' : 'bg-background border border-border border-dashed text-muted-foreground hover:bg-muted/30'}`}>
+                      <span className="text-sm font-medium flex items-center gap-3"><Dumbbell className="w-4 h-4"/> Guided Movement</span>
+                      {synergyData.workout ? <CheckCircle2 className="w-4 h-4 text-primary" /> : <div className="text-[10px] uppercase font-bold tracking-widest">Pending</div>}
+                   </Link>
+
+                   <Link to="/sleep" className={`flex justify-between items-center p-3 rounded-sm transition-colors ${synergyData.sleep ? 'bg-muted/50 border border-border text-foreground hover:bg-muted' : 'bg-background border border-border border-dashed text-muted-foreground hover:bg-muted/30'}`}>
+                      <span className="text-sm font-medium flex items-center gap-3"><Moon className="w-4 h-4"/> Rest & Recover</span>
+                      {synergyData.sleep ? <CheckCircle2 className="w-4 h-4 text-primary" /> : <div className="text-[10px] uppercase font-bold tracking-widest">Pending</div>}
+                   </Link>
+                </div>
+                
              </div>
            )}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-20">
-        <motion.div variants={itemVars}>
-          <Card className="h-full flex flex-col hover:border-emerald-primary hover:-translate-y-1 transition-all duration-300 shadow-xl">
-            <div className="flex items-center justify-between mb-6">
-              <div className="bg-emerald-primary p-3 rounded-sm shadow-[2px_2px_0_0_rgba(30,41,59,1)]">
-                <Calculator className="h-6 w-6 text-white" /> 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <motion.div variants={itemVars} className="h-full">
+          <Card className="h-full flex flex-col bg-card border border-border p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-8">
+              <div className="bg-primary/10 p-3 rounded-sm text-primary">
+                <Calculator className="h-6 w-6" /> 
               </div>
               {synergyData.bmi ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div> Active</span>
               ) : (
-                 <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Unlinked</span>
               )}
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tight mb-3">BMI Status</h2>
-            <p className="text-gray-400 mb-8 font-medium flex-grow">Track your body metrics and get AI insights based on your health profile.</p>
+            <h2 className="text-2xl font-serif font-medium text-foreground tracking-tight mb-3">Body Context</h2>
+            <p className="text-muted-foreground mb-8 font-medium flex-grow leading-relaxed">Understand your unique starting point to ensure your practice supports you.</p>
             <Link to="/bmi">
-              <Button className="w-full group">
-                 {synergyData.bmi ? "Update Scan" : "Calibrate"} <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button className="w-full btn-primary">
+                 {synergyData.bmi ? "Update Context" : "Begin Check-In"} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
           </Card>
         </motion.div>
 
-        <motion.div variants={itemVars}>
-          <Card className="bg-slate-800 text-white h-full flex flex-col border-emerald-primary/30 hover:border-emerald-primary hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300">
-            <div className="flex items-center justify-between mb-6">
-              <div className="bg-slate-800 p-3 rounded-sm shadow-[2px_2px_0_0_rgba(16,185,129,1)]">
-                <Dumbbell className="h-6 w-6 text-white" /> 
+        <motion.div variants={itemVars} className="h-full">
+          <Card className="h-full flex flex-col bg-card border border-border p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-8">
+              <div className="bg-primary/10 p-3 rounded-sm text-primary">
+                <Dumbbell className="h-6 w-6" /> 
               </div>
               {synergyData.workout ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div> Active</span>
               ) : (
-                 <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Unlinked</span>
               )}
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tight mb-3">AI Workout</h2>
-            <p className="text-gray-400 mb-8 font-medium flex-grow">Generate personalized routines tailored to your specific fitness goals.</p>
+            <h2 className="text-2xl font-serif font-medium text-foreground tracking-tight mb-3">Guided Sessions</h2>
+            <p className="text-muted-foreground mb-8 font-medium flex-grow leading-relaxed">Daily regimens tailored to your goals and current energy levels.</p>
             <Link to="/workout">
-              <Button className="w-full bg-emerald-primary text-white hover:bg-slate-800 group border-none shadow-[4px_4px_0_0_rgba(255,255,255,0.2)]">
-                 Plan Routine <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button className="w-full btn-primary">
+                 Plan Session <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
           </Card>
         </motion.div>
 
-        <motion.div variants={itemVars}>
-           <Card className="h-full flex flex-col hover:border-emerald-primary hover:-translate-y-1 transition-all duration-300 shadow-xl">
-            <div className="flex items-center justify-between mb-6">
-              <div className="bg-slate-700 p-3 rounded-sm shadow-[2px_2px_0_0_rgba(30,41,59,1)]">
-                <Moon className="h-6 w-6 text-white" /> 
+        <motion.div variants={itemVars} className="h-full">
+           <Card className="h-full flex flex-col bg-card border border-border p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-8">
+              <div className="bg-primary/10 p-3 rounded-sm text-primary">
+                <Moon className="h-6 w-6" /> 
               </div>
               {synergyData.sleep ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-primary"></div> Active</span>
               ) : (
-                 <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Unlinked</span>
               )}
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tight mb-3">Sleep Sync</h2>
-            <p className="text-gray-400 mb-8 font-medium flex-grow">Log your rest periods and ensure maximum recovery for better performance.</p>
+            <h2 className="text-2xl font-serif font-medium text-foreground tracking-tight mb-3">Restful Recovery</h2>
+            <p className="text-muted-foreground mb-8 font-medium flex-grow leading-relaxed">Sync your workouts with your body's recovery state to celebrate rest.</p>
             <Link to="/sleep">
-              <Button className="w-full group">
-                 Log Sleep <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button className="w-full btn-primary">
+                 Log Rest <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
           </Card>

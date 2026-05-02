@@ -7,7 +7,7 @@ export const Layout = ({ children }) => {
   const isLanding = location.pathname === "/";
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-800">
+    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
       <Navbar />
       <main className={`flex-grow w-full ${isLanding ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28'}`}>
         {children}

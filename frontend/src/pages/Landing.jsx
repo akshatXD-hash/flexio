@@ -1,258 +1,139 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Activity, Dumbbell, Moon, Calculator, ArrowRight, BrainCircuit, ActivitySquare, ShieldCheck, Zap } from "lucide-react";
-import { useRef } from "react";
+import { Calculator, Dumbbell, Moon, ArrowRight } from "lucide-react";
 
 const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
 export const Landing = () => {
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "end start"]
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-
   return (
-    <div className="bg-dark-slate text-slate-200 overflow-hidden">
+    <div className="bg-background text-foreground overflow-hidden font-sans">
+      
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden border-b border-slate-800">
-        <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-emerald-primary rounded-full blur-[200px] opacity-[0.15] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="max-w-2xl">
-              <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-                <span className="inline-block py-1 px-4 rounded-full bg-slate-800/80 backdrop-blur-sm border border-emerald-primary/50 text-xs font-bold tracking-widest uppercase text-emerald-primary mb-8 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-                  <span className="text-emerald-primary font-black mr-2 animate-pulse">●</span> V2.0 System Online
-                </span>
-              </motion.div>
-              <motion.h1
-                initial="hidden" animate="visible" variants={fadeIn}
-                className="text-5xl md:text-[5.5rem] font-black text-emerald-text tracking-tighter leading-[1.05] mb-8"
-              >
-                Dominance through <br />
-                <span className="text-emerald-primary drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">Algorithm.</span>
-              </motion.h1>
-              <motion.p
-                initial="hidden" animate="visible" variants={fadeIn}
-                className="text-xl md:text-2xl text-gray-400 font-medium leading-relaxed mb-12 max-w-xl"
-              >
-                Flexio analyzes your personal biometrics, dynamically generates workout regimens, and tracks sleep recovery to push you to your absolute peak.
-              </motion.p>
-
-              <motion.div initial="hidden" animate="visible" variants={fadeIn} className="flex flex-col sm:flex-row gap-6">
-                <Link to="/auth" className="btn-primary text-xl !py-5 !px-10 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-shadow">
-                  Start your journey <ArrowRight className="ml-2 h-6 w-6" />
-                </Link>
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 50 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="hidden lg:block relative group"
-            >
-              <div className="absolute inset-0 bg-emerald-primary rounded-sm translate-x-6 translate-y-6 opacity-30 blur-2xl group-hover:opacity-50 group-hover:translate-x-8 group-hover:translate-y-8 transition-all duration-700"></div>
-              <img src="/hero_fitness.png" alt="High performance athletes" className="relative z-10 w-full h-[650px] object-cover rounded-sm border-2 border-emerald-primary/50 shadow-2xl filter contrast-125" />
+      <section className="max-w-7xl mx-auto px-8 pt-24 pb-20 mt-16">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div>
+            <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+              <span className="text-primary text-sm font-bold tracking-widest uppercase mb-8 block">
+                Cover Story
+              </span>
+              <h1 className="font-serif text-7xl md:text-[6.5rem] leading-[0.9] text-foreground tracking-tight mb-8">
+                The slow <br/>
+                <span className="text-primary italic">art</span> of <br/>
+                moving <br/>
+                well.
+              </h1>
             </motion.div>
+          </div>
+          <div className="flex flex-col justify-end pb-4">
+            <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-8">
+              <img src="/healthy_couple.png" alt="Healthy couple stretching" className="w-full max-w-md h-64 object-cover rounded-sm shadow-sm" />
+            </motion.div>
+            <motion.p initial="hidden" animate="visible" variants={fadeIn} className="text-xl text-foreground leading-relaxed max-w-md">
+              Flexio is a quiet companion for your body: a calm place to plan your week, follow guided sessions, and notice how you feel. No streaks. No shouting. Just gentle progress.
+            </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Infinite Logo Ticker */}
-      <section className="py-12 border-b border-slate-800 bg-slate-900/50 overflow-hidden relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark-slate to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark-slate to-transparent z-10 pointer-events-none"></div>
-
-
-        <div className="flex whitespace-nowrap animate-marquee items-center opacity-50 hover:opacity-100 transition-opacity duration-500 w-[200%]">
-          {[...Array(2)].map((_, index) => (
-            <div key={index} className="flex gap-24 mx-12 items-center flex-shrink-0">
-              <span className="flex items-center gap-2 text-2xl font-black text-gray-400 group cursor-default"><BrainCircuit className="h-8 w-8 group-hover:text-emerald-primary transition-colors" /> NEURAL-FIT</span>
-              <span className="flex items-center gap-2 text-2xl font-black text-gray-400 group cursor-default"><ActivitySquare className="h-8 w-8 group-hover:text-emerald-primary transition-colors" /> APEX HEALTH</span>
-              <span className="flex items-center gap-2 text-2xl font-black text-gray-400 group cursor-default"><ShieldCheck className="h-8 w-8 group-hover:text-emerald-primary transition-colors" /> RECOVERY.OS</span>
-              <span className="flex items-center gap-2 text-2xl font-black text-gray-400 group cursor-default"><Zap className="h-8 w-8 group-hover:text-emerald-primary transition-colors" /> VELOCITY</span>
-              <span className="flex items-center gap-2 text-2xl font-black text-gray-400 group cursor-default"><Dumbbell className="h-8 w-8 group-hover:text-emerald-primary transition-colors" /> KINETIC</span>
+      {/* Quote & Image Section */}
+      <section className="bg-card border-y border-border py-24">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="max-w-4xl mx-auto text-center mb-20">
+             <span className="text-primary text-6xl font-serif leading-none block mb-4">“</span>
+             <h2 className="font-serif text-4xl md:text-5xl leading-tight text-foreground mb-8">
+               You don't need more discipline. You need a kinder room to practice in. Flexio is that room, built by people who got tired of shouting apps.
+             </h2>
+             <p className="text-sm tracking-widest uppercase text-muted-foreground font-semibold">
+               The Flexio Team, on why we exist
+             </p>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute -top-4 -right-4 bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-serif italic z-10 shadow-soft">
+              circles · weekly
             </div>
-          ))}
+            <img src="/peaceful_yoga.png" alt="People practicing yoga in the park" className="w-full h-[600px] object-cover rounded-sm shadow-paper" />
+          </div>
         </div>
       </section>
 
-      {/* Heavy Image Break Section */}
-      <section className="bg-emerald-primary text-white flex flex-col lg:flex-row relative group">
-        <div className="w-full lg:w-1/2 p-16 md:p-32 flex flex-col justify-center items-start z-10">
-          <motion.h2
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn}
-            className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none mb-8"
-          >
-            Data Driven<br /> <span className="text-white drop-shadow-md">Physiology</span>
-          </motion.h2>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn} className="text-xl font-bold max-w-lg mb-8 opacity-90">
-            Stop guessing in the gym. Every set, rep, and core movement is calculated based off your structural capabilities and sleep patterns.
-          </motion.p>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <a href="#workflow" className="underline font-bold text-lg hover:text-white transition-colors">See the workflow</a>
+      {/* Core Features - Reimagined */}
+      <section className="py-32 max-w-7xl mx-auto px-8">
+        <div className="mb-20">
+          <span className="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">
+            Core Philosophy
+          </span>
+          <h2 className="font-serif text-5xl md:text-6xl text-foreground tracking-tight">Gentle Tools. <br/>Powerful Results.</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="group">
+            <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-6 text-accent-foreground group-hover:bg-accent transition-colors">
+              <Calculator className="h-5 w-5" />
+            </div>
+            <h3 className="font-serif text-2xl mb-4 text-foreground">Body Context</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              We start by understanding your unique starting point. Our gentle BMI guidance helps set a healthy baseline, ensuring your movement practice supports your specific physiological needs without pushing you too hard.
+            </p>
           </motion.div>
-        </div>
-        <div className="w-full lg:w-1/2 h-[500px] lg:h-auto overflow-hidden">
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 1 }}
-            src="/tech_gym.png" alt="Tech Gym AI"
-            className="w-full h-full object-cover filter contrast-150 grayscale mix-blend-multiply"
-          />
-        </div>
-      </section>
 
-      {/* How It Works Section */}
-      <section id="workflow" className="py-32 bg-dark-slate relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-4xl md:text-6xl font-black text-emerald-text tracking-tighter mb-6">Execution Pipeline</motion.h2>
-            <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-xl text-gray-400 font-medium">Three steps to physical dominance.</motion.p>
-          </div>
-
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-emerald-primary before:via-slate-700 before:to-transparent">
-
-            {/* Step 1 */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-emerald-primary bg-slate-800 text-emerald-primary group-hover:bg-emerald-primary group-hover:text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-colors shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-black z-10">
-                1
-              </div>
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-8 rounded-sm border border-slate-700 bg-slate-800 shadow-xl group-hover:border-emerald-primary transition-colors">
-                <div className="flex items-center gap-4 mb-4">
-                  <Calculator className="h-6 w-6 text-emerald-primary" />
-                  <h3 className="font-black text-2xl text-emerald-text">Intake & BMI Analysis</h3>
-                </div>
-                <p className="text-gray-400 font-medium">We ingest your body metrics to establish a heavy baseline. The algorithm calculates your exact physical starting point to prevent injury and maximize scaling.</p>
-              </div>
-            </motion.div>
-
-            {/* Step 2 */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-emerald-primary bg-slate-800 text-emerald-primary group-hover:bg-emerald-primary group-hover:text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-colors shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-black z-10">
-                2
-              </div>
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-8 rounded-sm border border-slate-700 bg-slate-800 shadow-xl group-hover:border-emerald-primary transition-colors">
-                <div className="flex items-center gap-4 mb-4">
-                  <Dumbbell className="h-6 w-6 text-emerald-primary" />
-                  <h3 className="font-black text-2xl text-emerald-text">Workout Generation</h3>
-                </div>
-                <p className="text-gray-400 font-medium">The system builds a hyper-targeted routine based on your goals (hypertrophy, endurance, strength), providing exact rep ranges and movement structures.</p>
-              </div>
-            </motion.div>
-
-            {/* Step 3 */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-emerald-primary bg-slate-800 text-emerald-primary group-hover:bg-emerald-primary group-hover:text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-colors shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 font-black z-10">
-                3
-              </div>
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-8 rounded-sm border border-slate-700 bg-slate-800 shadow-xl group-hover:border-emerald-primary transition-colors">
-                <div className="flex items-center gap-4 mb-4">
-                  <Moon className="h-6 w-6 text-emerald-primary" />
-                  <h3 className="font-black text-2xl text-emerald-text">Recovery Syncing</h3>
-                </div>
-                <p className="text-gray-400 font-medium">Growth happens when you sleep. By logging your sleep quality and mood, the AI adjusts tomorrow's intensity to prevent overtraining and burnout.</p>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 border-y border-emerald-primary/20 bg-slate-900/50" ref={targetRef}>
-        <motion.div style={{ opacity, scale }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-slate-800">
-            <div className="pt-8 md:pt-0">
-              <div className="text-6xl md:text-8xl font-black text-emerald-primary tracking-tighter mb-4 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">2.4M</div>
-              <div className="text-xl font-bold text-emerald-text uppercase tracking-widest">Workouts Generated</div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="group">
+            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+              <Dumbbell className="h-5 w-5" />
             </div>
-            <div className="pt-8 md:pt-0">
-              <div className="text-6xl md:text-8xl font-black text-emerald-text tracking-tighter mb-4">98%</div>
-              <div className="text-xl font-bold text-gray-400 uppercase tracking-widest">Goal Completion</div>
+            <h3 className="font-serif text-2xl mb-4 text-foreground">Guided Sessions</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Let go of the guesswork. Our algorithm quietly generates daily regimens tailored to your goals and energy levels, offering exactly what your body needs today—whether that's a light stretch or a strength session.
+            </p>
+          </motion.div>
+
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="group">
+            <div className="w-12 h-12 rounded-full bg-sage-deep/20 flex items-center justify-center mb-6 text-sage-deep group-hover:bg-sage-deep group-hover:text-primary-foreground transition-colors">
+              <Moon className="h-5 w-5" />
             </div>
-            <div className="pt-8 md:pt-0">
-              <div className="text-6xl md:text-8xl font-black text-emerald-text tracking-tighter mb-4">40k</div>
-              <div className="text-xl font-bold text-gray-400 uppercase tracking-widest">Active Athletes</div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-32 bg-dark-slate">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-3xl md:text-5xl font-black text-emerald-text tracking-tighter mb-4">Core Platform Tools</motion.h2>
-          </div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            <motion.div variants={fadeIn} className="bg-slate-800 p-10 border border-slate-700 shadow-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-primary hover:-translate-y-4 transition-all duration-500 relative overflow-hidden group rounded-sm">
-              <div className="w-16 h-16 bg-emerald-primary rounded-sm flex items-center justify-center mb-8 border-2 border-emerald-text group-hover:bg-slate-700 group-hover:scale-110 transition-all duration-300">
-                <Calculator className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-emerald-text tracking-tight mb-4">Precision BMI</h3>
-              <p className="text-gray-400 leading-relaxed font-medium">Input your metrics to instantly receive algorithmic health insights regarding your current body mass index.</p>
-            </motion.div>
-
-            <motion.div variants={fadeIn} className="bg-emerald-primary p-10 border border-emerald-primary shadow-sm hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:-translate-y-4 transition-all duration-500 relative overflow-hidden group rounded-sm">
-              <div className="w-16 h-16 bg-slate-800 rounded-sm flex items-center justify-center mb-8 shadow-[4px_4px_0_0_rgba(255,255,255,0.2)] group-hover:scale-110 transition-transform duration-300">
-                <Dumbbell className="h-8 w-8 text-emerald-primary" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-4">AI Workouts</h3>
-              <p className="text-white/80 font-bold leading-relaxed">Stop guessing. Let our AI generate the perfect daily regimen tailored to your exact goal and fitness level.</p>
-            </motion.div>
-
-            <motion.div variants={fadeIn} className="bg-slate-800 p-10 border border-slate-700 shadow-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-primary hover:-translate-y-4 transition-all duration-500 relative overflow-hidden group rounded-sm">
-              <div className="w-16 h-16 bg-emerald-primary rounded-sm flex items-center justify-center mb-8 border-2 border-emerald-text group-hover:bg-slate-700 group-hover:scale-110 transition-all duration-300">
-                <Moon className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-emerald-text tracking-tight mb-4">Sleep Recovery</h3>
-              <p className="text-gray-400 leading-relaxed font-medium">Track your sleep quality and waking mood to unlock deep correlations between rest and subsequent workout performance.</p>
-            </motion.div>
+            <h3 className="font-serif text-2xl mb-4 text-foreground">Restful Recovery</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              True strength is built in the quiet hours. By tracking your sleep quality and waking mood, Flexio syncs your workouts with your body's recovery state to prevent burnout and celebrate rest.
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-dark-slate relative overflow-hidden flex justify-center items-center">
-        <div className="absolute inset-0 bg-emerald-primary/5"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-primary rounded-full blur-[250px] opacity-[0.07]"></div>
-
-        <motion.div
-          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
-        >
-          <h2 className="text-5xl md:text-7xl font-black text-emerald-text tracking-tighter mb-8 leading-tight">Ready to scale your <span className="text-emerald-primary">body</span>?</h2>
-          <Link to="/auth" className="bg-emerald-primary text-white font-black text-xl py-6 px-12 border-2 border-transparent hover:bg-transparent hover:border-emerald-primary hover:text-emerald-primary transition-all duration-300 inline-flex items-center shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.4)] hover:-translate-y-1">
-            Initialize Account <ArrowRight className="ml-3 h-6 w-6" />
-          </Link>
-        </motion.div>
+      <section className="bg-cream py-32 border-t border-border">
+        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">
+              POSTSCRIPT
+            </span>
+            <h2 className="font-serif text-6xl md:text-8xl leading-[0.9] tracking-tight text-foreground mb-8">
+              Take the <br/> first soft <br/> step today.
+            </h2>
+          </div>
+          <div>
+            <p className="text-xl text-foreground mb-12 leading-relaxed">
+              Two minutes to set up. A lifetime to enjoy. Flexio is free to try: no card, no commitments, no fine print.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Link to="/auth" className="bg-foreground text-background px-8 py-4 text-sm font-bold hover:bg-primary transition-colors inline-flex items-center justify-center border border-transparent rounded-sm">
+                Create free account <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+              <Link to="/auth" className="bg-transparent text-foreground border border-foreground px-8 py-4 text-sm font-bold hover:bg-foreground hover:text-background transition-colors inline-flex items-center justify-center rounded-sm">
+                Talk to our team
+              </Link>
+            </div>
+            
+            <div className="flex flex-wrap gap-6 text-xs font-bold tracking-widest uppercase text-muted-foreground">
+              <span className="flex items-center gap-2"><span className="text-primary">✦</span> NO CREDIT CARD</span>
+              <span className="flex items-center gap-2"><span className="text-primary">✦</span> PAUSE ANYTIME</span>
+              <span className="flex items-center gap-2"><span className="text-primary">✦</span> HUMAN SUPPORT</span>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -12,7 +12,7 @@ export const Footer = () => {
               <span className="font-serif text-3xl font-medium tracking-tight text-primary">Flexio.</span>
             </Link>
             <p className="text-muted-foreground max-w-sm font-medium leading-relaxed">
-              A quiet companion for your body. Plan your week, follow guided sessions, and notice how you feel.
+              Your health management platform. Plan your week, track your metrics, and view analytics.
             </p>
             <div className="flex gap-4 mt-6">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><MessageCircle className="h-5 w-5" /></a>
@@ -26,7 +26,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li><Link to="/bmi" className="text-muted-foreground hover:text-primary transition-colors font-medium">Body Context</Link></li>
               <li><Link to="/workout" className="text-muted-foreground hover:text-primary transition-colors font-medium">Guided Sessions</Link></li>
-              <li><Link to="/sleep" className="text-muted-foreground hover:text-primary transition-colors font-medium">Restful Recovery</Link></li>
+              <li><Link to="/sleep" className="text-muted-foreground hover:text-primary transition-colors font-medium">Recovery Analytics</Link></li>
               <li><Link to="/dashboard" className="text-muted-foreground hover:text-primary transition-colors font-medium">Dashboard</Link></li>
             </ul>
           </div>

@@ -78,7 +78,7 @@ export const Dashboard = () => {
            <div className="flex flex-col items-start border-l-2 border-muted pl-4 sm:w-1/4">
               <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1">Beginning</span>
               <span className="text-sm font-serif font-medium text-muted-foreground mb-1">Taking Root</span>
-              <span className="text-xs text-muted-foreground/70 leading-relaxed">Starting your gentle journey. Focus on just showing up.</span>
+              <span className="text-xs text-muted-foreground/70 leading-relaxed">Starting your optimization phase. Consistency is key.</span>
            </div>
            <div className="flex flex-col items-start border-l-2 border-muted pl-4 sm:w-1/4">
               <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1">Awakening</span>
@@ -104,7 +104,7 @@ export const Dashboard = () => {
            
            <div className="lg:pr-10 lg:w-1/2">
              <h1 className="text-4xl md:text-5xl font-serif font-black tracking-tight mb-4 text-foreground">Welcome Back.</h1>
-             <p className="text-muted-foreground font-medium text-lg mb-8 leading-relaxed">Ready to continue your gentle practice? Listen to your body and move at your own pace today.</p>
+             <p className="text-muted-foreground font-medium text-lg mb-8 leading-relaxed">Ready for your next session? Execute your scheduled programming today.</p>
              
              <div className="flex items-center gap-4 bg-background p-4 rounded-sm border border-border w-max">
                 <div className="bg-muted p-3 rounded-full">
@@ -142,7 +142,7 @@ export const Dashboard = () => {
                 </div>
 
                 <div className="space-y-3">
-                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Today's Gentle Practice</div>
+                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Today's Protocol</div>
                    
                    <Link to="/bmi" className={`flex justify-between items-center p-3 rounded-sm transition-colors ${synergyData.bmi ? 'bg-muted/50 border border-border text-foreground hover:bg-muted' : 'bg-background border border-border border-dashed text-muted-foreground hover:bg-muted/30'}`}>
                       <span className="text-sm font-medium flex items-center gap-3"><Calculator className="w-4 h-4"/> Check In</span>
@@ -155,7 +155,7 @@ export const Dashboard = () => {
                    </Link>
 
                    <Link to="/sleep" className={`flex justify-between items-center p-3 rounded-sm transition-colors ${synergyData.sleep ? 'bg-muted/50 border border-border text-foreground hover:bg-muted' : 'bg-background border border-border border-dashed text-muted-foreground hover:bg-muted/30'}`}>
-                      <span className="text-sm font-medium flex items-center gap-3"><Moon className="w-4 h-4"/> Rest & Recover</span>
+                      <span className="text-sm font-medium flex items-center gap-3"><Moon className="w-4 h-4"/> Recovery</span>
                       {synergyData.sleep ? <CheckCircle2 className="w-4 h-4 text-primary" /> : <div className="text-[10px] uppercase font-bold tracking-widest">Pending</div>}
                    </Link>
                 </div>
@@ -222,8 +222,8 @@ export const Dashboard = () => {
                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Unlinked</span>
               )}
             </div>
-            <h2 className="text-2xl font-serif font-medium text-foreground tracking-tight mb-3">Restful Recovery</h2>
-            <p className="text-muted-foreground mb-8 font-medium flex-grow leading-relaxed">Sync your workouts with your body's recovery state to celebrate rest.</p>
+            <h2 className="text-2xl font-serif font-medium text-foreground tracking-tight mb-3">Recovery Analytics</h2>
+            <p className="text-muted-foreground mb-8 font-medium flex-grow leading-relaxed">Track sleep metrics to optimize your performance and prevent overtraining.</p>
             <Link to="/sleep">
               <Button className="w-full btn-primary">
                  Log Rest <ArrowRight className="h-4 w-4 ml-2" />

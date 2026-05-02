@@ -44,22 +44,22 @@ export const Auth = () => {
 
         <div className="relative z-10 max-w-md">
           <h2 className="font-serif text-5xl md:text-6xl text-foreground tracking-tight leading-tight mb-8">
-            Welcome to a <br />
-            <span className="text-primary italic">kinder room.</span>
+            Welcome to your <br />
+            <span className="text-primary italic">command center.</span>
           </h2>
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-1" />
               <div>
-                <h4 className="text-foreground font-serif text-xl mb-1">Gentle Guidance</h4>
-                <p className="text-muted-foreground text-sm font-medium leading-relaxed">Personalized movement plans that respect your body's current state and limits.</p>
+                <h4 className="text-foreground font-serif text-xl mb-1">Advanced Programming</h4>
+                <p className="text-muted-foreground text-sm font-medium leading-relaxed">Data-driven workout plans tailored to your specific performance goals and metrics.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-1" />
               <div>
-                <h4 className="text-foreground font-serif text-xl mb-1">Restful Recovery</h4>
-                <p className="text-muted-foreground text-sm font-medium leading-relaxed">Sync your physical efforts with your sleep quality for sustainable, long-term health.</p>
+                <h4 className="text-foreground font-serif text-xl mb-1">Recovery Analytics</h4>
+                <p className="text-muted-foreground text-sm font-medium leading-relaxed">Track sleep quality and recovery metrics to optimize performance and prevent overtraining.</p>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@ export const Auth = () => {
                   {isLogin ? "Welcome back" : "Take the first step"}
                 </h3>
                 <p className="text-muted-foreground font-medium">
-                  {isLogin ? "Enter your details to access your dashboard." : "Create a free account to start your gentle fitness journey."}
+                  {isLogin ? "Enter your details to access your dashboard." : "Create a free account to start optimizing your health."}
                 </p>
               </div>
 

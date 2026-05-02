@@ -33,7 +33,7 @@ export const Landing = () => {
               <img src="/healthy_couple.png" alt="Healthy couple stretching" className="w-full max-w-md h-64 object-cover rounded-sm shadow-sm" />
             </motion.div>
             <motion.p initial="hidden" animate="visible" variants={fadeIn} className="text-xl text-foreground leading-relaxed max-w-md">
-              Flexio is a quiet companion for your body: a calm place to plan your week, follow guided sessions, and notice how you feel. No streaks. No shouting. Just gentle progress.
+              Flexio is a comprehensive health management platform: a centralized hub to plan your week, follow guided sessions, and track your progress. Log your data. View analytics. See real results.
             </motion.p>
           </div>
         </div>
@@ -45,7 +45,7 @@ export const Landing = () => {
           <div className="max-w-4xl mx-auto text-center mb-20">
              <span className="text-primary text-6xl font-serif leading-none block mb-4">“</span>
              <h2 className="font-serif text-4xl md:text-5xl leading-tight text-foreground mb-8">
-               You don't need more discipline. You need a kinder room to practice in. Flexio is that room, built by people who got tired of shouting apps.
+               You don't need more guesswork. You need a powerful platform to train with. Flexio is that platform, built by engineers who got tired of fragmented apps.
              </h2>
              <p className="text-sm tracking-widest uppercase text-muted-foreground font-semibold">
                The Flexio Team, on why we exist
@@ -67,7 +67,7 @@ export const Landing = () => {
           <span className="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">
             Core Philosophy
           </span>
-          <h2 className="font-serif text-5xl md:text-6xl text-foreground tracking-tight">Gentle Tools. <br/>Powerful Results.</h2>
+          <h2 className="font-serif text-5xl md:text-6xl text-foreground tracking-tight">Advanced Tracking. <br/>Measurable Results.</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -77,7 +77,7 @@ export const Landing = () => {
             </div>
             <h3 className="font-serif text-2xl mb-4 text-foreground">Body Context</h3>
             <p className="text-muted-foreground leading-relaxed">
-              We start by understanding your unique starting point. Our gentle BMI guidance helps set a healthy baseline, ensuring your movement practice supports your specific physiological needs without pushing you too hard.
+              We start by analyzing your unique metrics. Our precise BMI calculator establishes a baseline, ensuring your workout regimen targets your specific physiological goals effectively.
             </p>
           </motion.div>
 
@@ -87,7 +87,7 @@ export const Landing = () => {
             </div>
             <h3 className="font-serif text-2xl mb-4 text-foreground">Guided Sessions</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Let go of the guesswork. Our algorithm quietly generates daily regimens tailored to your goals and energy levels, offering exactly what your body needs today—whether that's a light stretch or a strength session.
+              Optimize your training. Our algorithm dynamically generates daily regimens tailored to your goals and fitness level, offering exactly what your body needs today—from mobility work to heavy lifting.
             </p>
           </motion.div>
 
@@ -95,9 +95,9 @@ export const Landing = () => {
             <div className="w-12 h-12 rounded-full bg-sage-deep/20 flex items-center justify-center mb-6 text-sage-deep group-hover:bg-sage-deep group-hover:text-primary-foreground transition-colors">
               <Moon className="h-5 w-5" />
             </div>
-            <h3 className="font-serif text-2xl mb-4 text-foreground">Restful Recovery</h3>
+            <h3 className="font-serif text-2xl mb-4 text-foreground">Recovery Analytics</h3>
             <p className="text-muted-foreground leading-relaxed">
-              True strength is built in the quiet hours. By tracking your sleep quality and waking mood, Flexio syncs your workouts with your body's recovery state to prevent burnout and celebrate rest.
+              True strength is built during recovery. By tracking your sleep quality and waking metrics, Flexio syncs your workouts with your body's recovery state to optimize performance and prevent overtraining.
             </p>
           </motion.div>
         </div>
@@ -111,7 +111,7 @@ export const Landing = () => {
               POSTSCRIPT
             </span>
             <h2 className="font-serif text-6xl md:text-8xl leading-[0.9] tracking-tight text-foreground mb-8">
-              Take the <br/> first soft <br/> step today.
+              Start your <br/> optimization <br/> phase today.
             </h2>
           </div>
           <div>

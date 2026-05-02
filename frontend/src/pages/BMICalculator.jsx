@@ -44,7 +44,7 @@ export const BMICalculator = () => {
   };
 
   const renderInsights = (text) => {
-    if (!text) return <p className="text-slate-400">No intelligent insights generated for this combination.</p>;
+    if (!text) return <p className="text-gray-400">No intelligent insights generated for this combination.</p>;
     
     const lines = text.split('\n').filter(line => {
       const lower = line.toLowerCase();
@@ -65,18 +65,18 @@ export const BMICalculator = () => {
             const label = cleanLine.substring(0, colonIdx).trim();
             const value = cleanLine.substring(colonIdx + 1).trim();
             return (
-              <div key={idx} className="bg-slate-900/60 p-4 rounded-sm border border-slate-700/50 flex gap-4 hover:border-lime-accent/50 transition-colors group shadow-sm inline-flex w-full items-start">
-                 <div className="mt-0.5"><Zap className="h-4 w-4 text-lime-accent group-hover:scale-110 transition-transform" /></div>
+              <div key={idx} className="bg-slate-800/60 p-4 rounded-sm border border-slate-700/50 flex gap-4 hover:border-emerald-primary/50 transition-colors group shadow-sm inline-flex w-full items-start">
+                 <div className="mt-0.5"><Zap className="h-4 w-4 text-emerald-primary group-hover:scale-110 transition-transform" /></div>
                  <div className="w-full">
                     <span className="font-black text-white tracking-widest uppercase text-[10px] block mb-1 opacity-70 group-hover:opacity-100 transition-opacity">{label}</span>
-                    <span className="text-sm text-slate-300 font-medium leading-relaxed">{value}</span>
+                    <span className="text-sm text-gray-400 font-medium leading-relaxed">{value}</span>
                  </div>
               </div>
             );
           }
           
           return (
-            <div key={idx} className="bg-slate-900/30 p-4 rounded-sm border-l-2 border-lime-accent/30 text-sm text-slate-300 flex gap-3 items-start">
+            <div key={idx} className="bg-slate-800/30 p-4 rounded-sm border-l-2 border-emerald-primary/30 text-sm text-gray-400 flex gap-3 items-start">
               <Info className="h-4 w-4 text-slate-500 shrink-0 mt-0.5" />
               <span className="leading-relaxed">{cleanLine}</span>
             </div>
@@ -124,17 +124,17 @@ export const BMICalculator = () => {
              style={{ transform: `translateX(-50%) rotate(${angle - 90}deg)` }}
            >
               <div className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[20px] border-l-transparent border-r-transparent border-b-white mx-auto -mt-2 drop-shadow-md"></div>
-              <div className="w-1 h-[100px] bg-white mx-auto shadow-md"></div>
+              <div className="w-1 h-[100px] bg-slate-800 mx-auto shadow-md"></div>
            </div>
            
            {/* Needle anchor pin */}
-           <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 w-5 h-5 bg-white rounded-full z-30 shadow-lg border-4 border-slate-800"></div>
+           <div className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 w-5 h-5 bg-slate-800 rounded-full z-30 shadow-lg border-4 border-slate-700"></div>
         </div>
 
         {/* Legend */}
         <div className="flex justify-between w-[320px] text-[10px] font-black text-slate-500 uppercase tracking-widest mt-4">
           <span className="text-blue-400">Under</span>
-          <span className="text-lime-accent">Normal</span>
+          <span className="text-emerald-primary">Normal</span>
           <span className="text-yellow-500">Over</span>
           <span className="text-red-500">Obese</span>
         </div>
@@ -146,8 +146,8 @@ export const BMICalculator = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       <Card>
         <div className="flex items-center gap-3 mb-6">
-          <div className="bg-lime-accent p-2 rounded-sm shadow-[2px_2px_0_0_rgba(255,255,255,0.2)]">
-            <Calculator className="h-6 w-6 text-dark-slate" /> 
+          <div className="bg-emerald-primary p-2 rounded-sm shadow-[2px_2px_0_0_rgba(255,255,255,0.2)]">
+            <Calculator className="h-6 w-6 text-white" /> 
           </div>
           <h2 className="text-2xl font-black text-white tracking-tight">BMI Predictor</h2>
         </div>
@@ -164,7 +164,7 @@ export const BMICalculator = () => {
               required 
             />
             <div className="mb-4 w-full">
-              <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">Gender</label>
+              <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">Gender</label>
               <select 
                 className="input-minimal appearance-none"
                 value={formData.gender}
@@ -200,19 +200,19 @@ export const BMICalculator = () => {
       </Card>
 
       {result && result.bmi ? (
-        <Card className="bg-slate-800 border-lime-accent/50 shadow-[0_0_30px_rgba(198,255,50,0.05)] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-lime-accent rounded-full blur-[80px] opacity-20 pointer-events-none z-0"></div>
+        <Card className="bg-slate-800 border-emerald-primary/50 shadow-[0_0_30px_rgba(16,185,129,0.05)] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-primary rounded-full blur-[80px] opacity-20 pointer-events-none z-0"></div>
           
           <div className="flex justify-between items-start mb-2 relative z-10">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Calculated State</h2>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Calculated State</h2>
               <div className="text-6xl font-black text-white drop-shadow-md">
                 {result.bmi.bmiValue}
               </div>
             </div>
-            <div className="bg-lime-accent/20 border border-lime-accent/50 px-4 py-2 flex items-center gap-2 rounded-sm mt-3">
-               <Activity className="h-4 w-4 text-lime-accent" />
-               <span className="text-lime-accent font-black tracking-widest uppercase text-xs">V2 Analysis</span>
+            <div className="bg-emerald-primary/20 border border-emerald-primary/50 px-4 py-2 flex items-center gap-2 rounded-sm mt-3">
+               <Activity className="h-4 w-4 text-emerald-primary" />
+               <span className="text-emerald-primary font-black tracking-widest uppercase text-xs">V2 Analysis</span>
             </div>
           </div>
           
@@ -221,7 +221,7 @@ export const BMICalculator = () => {
           
           <div className="border-t border-slate-700 pt-6 relative z-10 mt-6">
             <h3 className="font-black text-white mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-lime-accent inline-block animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-primary inline-block animate-pulse"></span>
               AI Insight Engine
             </h3>
             
@@ -233,7 +233,7 @@ export const BMICalculator = () => {
            <div className="w-16 h-16 bg-slate-800 flex items-center justify-center rounded-sm mb-6 border border-slate-700 shadow-inner">
              <span className="text-2xl font-black text-slate-500">?</span>
            </div>
-           <p className="text-slate-400 font-medium max-w-sm">Input your physiological metrics to fire the AI engine and receive your custom body mass breakdown.</p>
+           <p className="text-gray-400 font-medium max-w-sm">Input your physiological metrics to fire the AI engine and receive your custom body mass breakdown.</p>
         </div>
       )}
     </div>

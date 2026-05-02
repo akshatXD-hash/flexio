@@ -69,9 +69,9 @@ export const Dashboard = () => {
 
   const getRankData = (val) => {
     if (val >= 85) return { tier: "S-Tier", title: "Apex Predator", color: "text-emerald-400", bg: "bg-emerald-400", border: "border-emerald-400/30" };
-    if (val >= 60) return { tier: "A-Tier", title: "Elite Athlete", color: "text-lime-accent", bg: "bg-lime-accent", border: "border-lime-accent/30" };
+    if (val >= 60) return { tier: "A-Tier", title: "Elite Athlete", color: "text-emerald-primary", bg: "bg-emerald-primary", border: "border-emerald-primary/30" };
     if (val >= 30) return { tier: "B-Tier", title: "Active Contender", color: "text-yellow-400", bg: "bg-yellow-400", border: "border-yellow-400/30" };
-    return { tier: "C-Tier", title: "Rookie", color: "text-slate-400", bg: "bg-slate-400", border: "border-slate-700" };
+    return { tier: "C-Tier", title: "Rookie", color: "text-gray-400", bg: "bg-slate-400", border: "border-slate-700" };
   };
   const rank = getRankData(score);
 
@@ -81,22 +81,22 @@ export const Dashboard = () => {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={containerVars} className="space-y-12">
-      <div className="bg-dark-slate text-white p-8 md:p-12 rounded-sm relative overflow-hidden shadow-xl border-l-[6px] border-lime-accent">
-        <div className="absolute right-0 top-0 w-64 h-64 bg-lime-accent rounded-full blur-[120px] opacity-10 transform translate-x-1/2 -translate-y-1/4 pointer-events-none"></div>
+      <div className="bg-slate-800 text-white p-8 md:p-12 rounded-sm relative overflow-hidden shadow-xl border-l-[6px] border-emerald-primary">
+        <div className="absolute right-0 top-0 w-64 h-64 bg-emerald-primary rounded-full blur-[120px] opacity-10 transform translate-x-1/2 -translate-y-1/4 pointer-events-none"></div>
         <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start gap-8">
            
            <div className="lg:pr-10">
              <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-2">Welcome Back.</h1>
-             <p className="text-slate-400 font-medium text-lg mb-8">Ready to level up your biological hardware?</p>
+             <p className="text-gray-400 font-medium text-lg mb-8">Ready to level up your biological hardware?</p>
              
              <div className="flex items-center gap-4 bg-slate-800/80 p-4 rounded-sm border border-slate-700 shadow-inner w-max backdrop-blur-sm">
-                <div className="bg-slate-900 p-3 rounded-full border border-slate-700/50">
-                  <User className="h-6 w-6 text-slate-300" />
+                <div className="bg-slate-800 p-3 rounded-full border border-slate-700/50">
+                  <User className="h-6 w-6 text-gray-400" />
                 </div>
                 <div>
                   <p className="text-xs font-bold tracking-widest text-slate-500 uppercase">Profile Status</p>
                   <p className="font-bold text-white uppercase flex items-center gap-2">
-                     <span className="w-2 h-2 rounded-full bg-lime-accent animate-pulse"></span> Online
+                     <span className="w-2 h-2 rounded-full bg-emerald-primary animate-pulse"></span> Online
                   </p>
                 </div>
              </div>
@@ -105,17 +105,17 @@ export const Dashboard = () => {
            {/* Central GAMER Player Card Widget */}
            {!loading && (
              <div className={`flex-1 w-full lg:min-w-[400px] border ${rank.border} rounded-sm p-1 bg-slate-800/50 backdrop-blur-md relative overflow-hidden group shadow-2xl`}>
-                <div className="bg-slate-900 w-full h-full p-5 flex flex-col relative overflow-hidden">
+                <div className="bg-slate-800 w-full h-full p-5 flex flex-col relative overflow-hidden">
                    
                    {/* Top Header */}
                    <div className="flex justify-between items-center mb-6">
                       <div className="flex items-center gap-2">
                          <Gamepad2 className={`h-5 w-5 ${rank.color}`} />
-                         <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Player Card</span>
+                         <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Player Card</span>
                       </div>
                       <div className="bg-slate-800 border border-slate-700 px-3 py-1 flex items-center gap-2 rounded shadow-inner">
-                         <Globe2 className="w-3 h-3 text-slate-400"/>
-                         <span className="text-[10px] font-black tracking-widest uppercase text-slate-300">Global Rank: Top {globalRankPct}%</span>
+                         <Globe2 className="w-3 h-3 text-gray-400"/>
+                         <span className="text-[10px] font-black tracking-widest uppercase text-gray-400">Global Rank: Top {globalRankPct}%</span>
                       </div>
                    </div>
 
@@ -131,11 +131,11 @@ export const Dashboard = () => {
                    <div className="mb-6 bg-slate-800/50 p-3 rounded border border-slate-700 border-dashed">
                       <div className="flex justify-between items-end mb-2">
                          <span className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
-                            <Crosshair className="w-3 h-3 text-lime-accent" /> Base XP
+                            <Crosshair className="w-3 h-3 text-emerald-primary" /> Base XP
                          </span>
                          <span className="text-lg font-black text-white leading-none">Lvl {playerLevel}</span>
                       </div>
-                      <div className="w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-700 relative shadow-inner">
+                      <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700 relative shadow-inner">
                          <div 
                            className={`h-full ${rank.bg} transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(255,255,255,0.2)]`} 
                            style={{ width: `${score}%` }}
@@ -148,21 +148,21 @@ export const Dashboard = () => {
 
                    {/* Mission Checklist */}
                    <div className="space-y-2">
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Daily Biological Missions</div>
+                      <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Daily Biological Missions</div>
                       
                       <Link to="/bmi" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.bmi ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
                          <span className="text-xs font-bold flex items-center gap-2"><Calculator className="w-4 h-4"/> BMI Calibrated</span>
-                         {synergyData.bmi ? <ShieldCheck className="w-4 h-4 text-lime-accent" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
+                         {synergyData.bmi ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
                       </Link>
 
                       <Link to="/workout" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.workout ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
                          <span className="text-xs font-bold flex items-center gap-2"><Dumbbell className="w-4 h-4"/> Workout Generated</span>
-                         {synergyData.workout ? <ShieldCheck className="w-4 h-4 text-lime-accent" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
+                         {synergyData.workout ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
                       </Link>
 
                       <Link to="/sleep" className={`flex justify-between items-center p-2 rounded transition-colors ${synergyData.sleep ? 'bg-slate-800 text-white border border-slate-700 hover:border-slate-500' : 'bg-slate-800/30 text-slate-500 hover:bg-slate-800'}`}>
                          <span className="text-xs font-bold flex items-center gap-2"><Moon className="w-4 h-4"/> Recovery Logged</span>
-                         {synergyData.sleep ? <ShieldCheck className="w-4 h-4 text-lime-accent" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
+                         {synergyData.sleep ? <ShieldCheck className="w-4 h-4 text-emerald-primary" /> : <div className="text-[10px] border border-slate-600 px-2 py-0.5 rounded">Incomplete</div>}
                       </Link>
                    </div>
                    
@@ -174,19 +174,19 @@ export const Dashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-20">
         <motion.div variants={itemVars}>
-          <Card className="h-full flex flex-col hover:border-lime-accent hover:-translate-y-1 transition-all duration-300 shadow-xl">
+          <Card className="h-full flex flex-col hover:border-emerald-primary hover:-translate-y-1 transition-all duration-300 shadow-xl">
             <div className="flex items-center justify-between mb-6">
-              <div className="bg-lime-accent p-3 rounded-sm shadow-[2px_2px_0_0_rgba(30,41,59,1)]">
-                <Calculator className="h-6 w-6 text-dark-slate" /> 
+              <div className="bg-emerald-primary p-3 rounded-sm shadow-[2px_2px_0_0_rgba(30,41,59,1)]">
+                <Calculator className="h-6 w-6 text-white" /> 
               </div>
               {synergyData.bmi ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-lime-accent flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-lime-accent animate-pulse"></div> Active</span>
+                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
               ) : (
                  <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
               )}
             </div>
             <h2 className="text-2xl font-black text-white tracking-tight mb-3">BMI Status</h2>
-            <p className="text-slate-400 mb-8 font-medium flex-grow">Track your body metrics and get AI insights based on your health profile.</p>
+            <p className="text-gray-400 mb-8 font-medium flex-grow">Track your body metrics and get AI insights based on your health profile.</p>
             <Link to="/bmi">
               <Button className="w-full group">
                  {synergyData.bmi ? "Update Scan" : "Calibrate"} <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -196,21 +196,21 @@ export const Dashboard = () => {
         </motion.div>
 
         <motion.div variants={itemVars}>
-          <Card className="bg-slate-800 text-white h-full flex flex-col border-lime-accent/30 hover:border-lime-accent hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(198,255,50,0.1)] transition-all duration-300">
+          <Card className="bg-slate-800 text-white h-full flex flex-col border-emerald-primary/30 hover:border-emerald-primary hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300">
             <div className="flex items-center justify-between mb-6">
-              <div className="bg-white p-3 rounded-sm shadow-[2px_2px_0_0_rgba(198,255,50,1)]">
-                <Dumbbell className="h-6 w-6 text-dark-slate" /> 
+              <div className="bg-slate-800 p-3 rounded-sm shadow-[2px_2px_0_0_rgba(16,185,129,1)]">
+                <Dumbbell className="h-6 w-6 text-white" /> 
               </div>
               {synergyData.workout ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-lime-accent flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-lime-accent animate-pulse"></div> Active</span>
+                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
               ) : (
                  <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
               )}
             </div>
             <h2 className="text-2xl font-black text-white tracking-tight mb-3">AI Workout</h2>
-            <p className="text-slate-400 mb-8 font-medium flex-grow">Generate personalized routines tailored to your specific fitness goals.</p>
+            <p className="text-gray-400 mb-8 font-medium flex-grow">Generate personalized routines tailored to your specific fitness goals.</p>
             <Link to="/workout">
-              <Button className="w-full bg-lime-accent text-dark-slate hover:bg-white group border-none shadow-[4px_4px_0_0_rgba(255,255,255,0.2)]">
+              <Button className="w-full bg-emerald-primary text-white hover:bg-slate-800 group border-none shadow-[4px_4px_0_0_rgba(255,255,255,0.2)]">
                  Plan Routine <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -218,19 +218,19 @@ export const Dashboard = () => {
         </motion.div>
 
         <motion.div variants={itemVars}>
-           <Card className="h-full flex flex-col hover:border-lime-accent hover:-translate-y-1 transition-all duration-300 shadow-xl">
+           <Card className="h-full flex flex-col hover:border-emerald-primary hover:-translate-y-1 transition-all duration-300 shadow-xl">
             <div className="flex items-center justify-between mb-6">
               <div className="bg-slate-700 p-3 rounded-sm shadow-[2px_2px_0_0_rgba(30,41,59,1)]">
                 <Moon className="h-6 w-6 text-white" /> 
               </div>
               {synergyData.sleep ? (
-                 <span className="text-xs font-black uppercase tracking-widest text-lime-accent flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-lime-accent animate-pulse"></div> Active</span>
+                 <span className="text-xs font-black uppercase tracking-widest text-emerald-primary flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-primary animate-pulse"></div> Active</span>
               ) : (
                  <span className="text-xs font-black uppercase tracking-widest text-slate-500">Unlinked</span>
               )}
             </div>
             <h2 className="text-2xl font-black text-white tracking-tight mb-3">Sleep Sync</h2>
-            <p className="text-slate-400 mb-8 font-medium flex-grow">Log your rest periods and ensure maximum recovery for better performance.</p>
+            <p className="text-gray-400 mb-8 font-medium flex-grow">Log your rest periods and ensure maximum recovery for better performance.</p>
             <Link to="/sleep">
               <Button className="w-full group">
                  Log Sleep <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />

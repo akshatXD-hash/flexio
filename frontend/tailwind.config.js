@@ -9,6 +9,8 @@ export default {
       colors: {
         'lime-accent': '#B1DE00',
         'dark-slate': '#1E293B',
+        'emerald-primary': '#10b981',
+        'emerald-text': '#ecfdf5',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

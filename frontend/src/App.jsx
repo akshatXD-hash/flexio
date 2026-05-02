@@ -13,13 +13,13 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return <div className="min-h-screen bg-dark-slate flex items-center justify-center text-lime-accent font-black text-2xl animate-pulse">Initializing Data...</div>;
+  if (loading) return <div className="min-h-screen bg-white flex items-center justify-center text-emerald-primary font-black text-2xl animate-pulse">Initializing Data...</div>;
   return isAuthenticated ? children : <Navigate to="/auth" />;
 };
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return <div className="min-h-screen bg-dark-slate flex items-center justify-center text-lime-accent font-black text-2xl animate-pulse">System Check...</div>;
+  if (loading) return <div className="min-h-screen bg-white flex items-center justify-center text-emerald-primary font-black text-2xl animate-pulse">System Check...</div>;
   return !isAuthenticated ? children : <Navigate to="/dashboard" />;
 };
 

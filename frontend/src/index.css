@@ -12,15 +12,16 @@
 }
 
 @layer components {
+
   /* Tech Minimalist Utility Classes - Dark Mode */
   .card-minimal {
     @apply bg-slate-800 border border-slate-700 rounded-none md:rounded-sm shadow-sm p-6 md:p-8 transition-transform duration-300 hover:-translate-y-1 hover:border-lime-accent;
   }
-  
+
   .input-minimal {
     @apply w-full bg-slate-900/80 border border-slate-600 rounded-none md:rounded-sm px-4 py-3 text-white focus:outline-none focus:border-lime-accent focus:ring-1 focus:ring-lime-accent transition-colors shadow-inner;
   }
-  
+
   .btn-primary {
     @apply bg-lime-accent text-dark-slate font-bold px-6 py-3 rounded-none md:rounded-sm border border-transparent shadow-[4px_4px_0_0_rgba(255,255,255,0.1)] transition-all hover:bg-[#b0f215] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none inline-flex items-center justify-center;
   }
@@ -38,8 +39,31 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {

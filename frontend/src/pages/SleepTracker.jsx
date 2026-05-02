@@ -74,10 +74,10 @@ export const SleepTracker = () => {
     const maxVal = Math.max(10, ...chartLogs.map(log => log.amount));
     
     return (
-      <div className="bg-slate-900/60 p-6 rounded-sm border border-slate-700/50 mb-6 relative">
+      <div className="bg-slate-800/60 p-6 rounded-sm border border-slate-700/50 mb-6 relative">
          <h3 className="text-[10px] uppercase tracking-widest text-slate-500 font-bold flex justify-between items-center mb-8">
             <span>Volume Log (Chronological)</span>
-            <span className="text-lime-accent bg-lime-accent/10 px-2 py-0.5 rounded-[2px] shadow-sm">Last {chartLogs.length} Days</span>
+            <span className="text-emerald-primary bg-emerald-primary/10 px-2 py-0.5 rounded-[2px] shadow-sm">Last {chartLogs.length} Days</span>
          </h3>
          
          {/* Background Y-Axis scale framework */}
@@ -93,7 +93,7 @@ export const SleepTracker = () => {
                const heightPct = Math.min((log.amount / maxVal) * 100, 100);
                
                let gradient = "from-red-600 to-red-400";
-               if (log.amount >= 7) gradient = "from-lime-600 to-lime-accent";
+               if (log.amount >= 7) gradient = "from-lime-600 to-emerald-primary";
                else if (log.amount >= 5) gradient = "from-yellow-600 to-yellow-400";
 
                const dateVal = log.date || log.createdAt;
@@ -102,7 +102,7 @@ export const SleepTracker = () => {
                return (
                  <div key={idx} className="flex-1 flex flex-col items-center justify-end relative group">
                     {/* Hover Target Tooltip */}
-                    <div className="opacity-0 group-hover:opacity-100 absolute -top-10 bg-slate-800 text-white text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded shadow-xl transition-all duration-300 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1 border border-lime-accent/50 z-20 whitespace-nowrap pointer-events-none">
+                    <div className="opacity-0 group-hover:opacity-100 absolute -top-10 bg-slate-800 text-white text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded shadow-xl transition-all duration-300 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1 border border-emerald-primary/50 z-20 whitespace-nowrap pointer-events-none">
                        {log.amount} hrs
                     </div>
                     
@@ -111,11 +111,11 @@ export const SleepTracker = () => {
                       className={`w-6 md:w-8 rounded-t-sm transition-all duration-700 ease-bounce bg-gradient-to-t ${gradient} relative shadow-[0_0_10px_rgba(0,0,0,0.3)] border border-white/20`} 
                       style={{ height: `${heightPct}%` }}
                     >
-                      <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-t-sm"></div>
+                      <div className="absolute inset-0 bg-slate-800 opacity-0 group-hover:opacity-20 transition-opacity rounded-t-sm"></div>
                     </div>
                     
                     {/* Date Tag */}
-                    <span className="text-[10px] font-bold uppercase text-slate-500 mt-3 truncate max-w-full group-hover:text-slate-300 transition-colors">{label}</span>
+                    <span className="text-[10px] font-bold uppercase text-slate-500 mt-3 truncate max-w-full group-hover:text-gray-400 transition-colors">{label}</span>
                  </div>
                )
             })}
@@ -128,8 +128,8 @@ export const SleepTracker = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       <Card>
         <div className="flex items-center gap-3 mb-6">
-          <div className="bg-lime-accent p-2 rounded-sm shadow-[2px_2px_0_0_rgba(255,255,255,0.2)]">
-            <Moon className="h-6 w-6 text-dark-slate" /> 
+          <div className="bg-emerald-primary p-2 rounded-sm shadow-[2px_2px_0_0_rgba(255,255,255,0.2)]">
+            <Moon className="h-6 w-6 text-white" /> 
           </div>
           <h2 className="text-2xl font-black text-white tracking-tight">Recovery Console</h2>
         </div>
@@ -139,7 +139,7 @@ export const SleepTracker = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
              <div className="w-full">
-                <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">Date</label>
+                <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">Date</label>
                 <input 
                   type="date"
                   className="input-minimal appearance-none pb-2 h-[42px]"
@@ -161,7 +161,7 @@ export const SleepTracker = () => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="w-full">
-              <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">Quality Level</label>
+              <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">Quality Level</label>
               <select className="input-minimal appearance-none" value={formData.qualityLevel} onChange={(e) => setFormData({...formData, qualityLevel: e.target.value})} required>
                 <option value="Poor" className="bg-slate-800 text-white">Poor</option>
                 <option value="Fair" className="bg-slate-800 text-white">Fair</option>
@@ -170,7 +170,7 @@ export const SleepTracker = () => {
               </select>
             </div>
             <div className="w-full">
-              <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">Waking Mood</label>
+              <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">Waking Mood</label>
               <select className="input-minimal appearance-none" value={formData.wakingMood} onChange={(e) => setFormData({...formData, wakingMood: e.target.value})} required>
                 <option value="Exhausted" className="bg-slate-800 text-white">Exhausted</option>
                 <option value="Neutral" className="bg-slate-800 text-white">Neutral</option>
@@ -180,7 +180,7 @@ export const SleepTracker = () => {
             </div>
           </div>
           <div className="w-full mb-4">
-             <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">Notes (Optional)</label>
+             <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">Notes (Optional)</label>
              <textarea 
                 className="input-minimal min-h-[100px] resize-y placeholder:text-slate-600"
                 placeholder="Disrupted by noise, deep vivid dreams, etc."
@@ -195,23 +195,23 @@ export const SleepTracker = () => {
       </Card>
 
       {latestSleep ? (
-        <Card className="bg-slate-800 border-lime-accent/50 shadow-[0_0_30px_rgba(198,255,50,0.05)] relative overflow-hidden flex flex-col h-full min-h-[500px]">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-lime-accent rounded-full blur-[80px] opacity-20 pointer-events-none z-0"></div>
+        <Card className="bg-slate-800 border-emerald-primary/50 shadow-[0_0_30px_rgba(16,185,129,0.05)] relative overflow-hidden flex flex-col h-full min-h-[500px]">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-primary rounded-full blur-[80px] opacity-20 pointer-events-none z-0"></div>
           
           <div className="flex justify-between items-start mb-6 relative z-10 border-b border-slate-700 pb-4">
             <div>
-               <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                 <CalendarClock className="h-5 w-5 text-lime-accent" />
+               <h2 className="text-xl font-bold text-emerald-text flex items-center gap-2">
+                 <CalendarClock className="h-5 w-5 text-emerald-primary" />
                  Sleep Analysis
                </h2>
-               <p className="text-slate-400 text-sm mt-1">Latest Log: {latestSleep.date || latestSleep.createdAt ? new Date(latestSleep.date || latestSleep.createdAt).toLocaleDateString() : 'Active'}</p>
+               <p className="text-gray-400 text-sm mt-1">Latest Log: {latestSleep.date || latestSleep.createdAt ? new Date(latestSleep.date || latestSleep.createdAt).toLocaleDateString() : 'Active'}</p>
             </div>
-            <div className="bg-lime-accent/20 border border-lime-accent/50 px-3 py-1 flex flex-col items-end rounded-sm">
+            <div className="bg-emerald-primary/20 border border-emerald-primary/50 px-3 py-1 flex flex-col items-end rounded-sm">
                <div className="flex items-center gap-2">
-                 <Activity className="h-3 w-3 text-lime-accent" />
-                 <span className="text-lime-accent font-black tracking-widest uppercase text-[10px]">Volume</span>
+                 <Activity className="h-3 w-3 text-emerald-primary" />
+                 <span className="text-emerald-primary font-black tracking-widest uppercase text-[10px]">Volume</span>
                </div>
-               <span className="text-white font-black text-lg mt-0.5">{latestSleep.amount}<span className="text-xs text-lime-accent ml-1">hrs</span></span>
+               <span className="text-white font-black text-lg mt-0.5">{latestSleep.amount}<span className="text-xs text-emerald-primary ml-1">hrs</span></span>
             </div>
           </div>
 
@@ -219,10 +219,10 @@ export const SleepTracker = () => {
           
           <div className="relative z-10 flex-grow overflow-y-auto custom-scrollbar pr-2 pb-4">
             <h3 className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-lime-accent rounded-full animate-pulse inline-block"></span>
+              <span className="w-2 h-2 bg-emerald-primary rounded-full animate-pulse inline-block"></span>
               AI Diagnostics Engine
             </h3>
-            <div className="prose prose-invert prose-sm max-w-none text-slate-300 prose-headings:text-lime-accent marker:text-lime-accent prose-strong:text-white">
+            <div className="prose prose-invert prose-sm max-w-none text-gray-400 prose-headings:text-emerald-primary marker:text-emerald-primary prose-strong:text-white">
               <div 
                 className="whitespace-pre-wrap leading-relaxed"
                 dangerouslySetInnerHTML={{
@@ -240,7 +240,7 @@ export const SleepTracker = () => {
            <div className="w-16 h-16 bg-slate-800 flex items-center justify-center rounded-sm mb-6 border border-slate-700 shadow-inner">
              <span className="text-2xl font-black text-slate-500"><Moon className="h-6 w-6"/></span>
            </div>
-           <p className="text-slate-400 font-medium max-w-sm">Log your sleep hours to generate long-term history charts and comprehensive neural AI recovery insights.</p>
+           <p className="text-gray-400 font-medium max-w-sm">Log your sleep hours to generate long-term history charts and comprehensive neural AI recovery insights.</p>
         </div>
       )}
     </div>

@@ -4,7 +4,7 @@ import clsx from "clsx";
 export const Input = React.forwardRef(({ label, error, className, ...props }, ref) => {
   return (
     <div className={clsx("mb-4 w-full", className)}>
-      {label && <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide uppercase">{label}</label>}
+      {label && <label className="block text-sm font-semibold text-gray-400 mb-2 tracking-wide uppercase">{label}</label>}
       <input 
         ref={ref}
         className={clsx("input-minimal", error && "border-red-500 focus:border-red-500")}
